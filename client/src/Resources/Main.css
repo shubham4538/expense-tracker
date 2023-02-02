@@ -1,0 +1,245 @@
+@font-face {
+  font-family: FontB;
+  src: url("./Fonts/nexa-extrabold.ttf");
+}
+@font-face {
+  font-family: FontR;
+  src: url("./Fonts/Nexa\ Regular.otf");
+}
+@font-face {
+  font-family: FontL;
+  src: url("./Fonts/Nexa\ Light.otf");
+}
+.authentication {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(316deg, #611e8a 20%, #410591 79%, #93b7ec 110%);
+}
+.authenticason {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  padding: 10px;
+  background: #1e1e2f;
+}
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+/* .svg{
+  width: 321px;
+  height: 241px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+} */
+.template {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: FontB;
+}
+.bold {
+  font-family: FontB !important;
+}
+.template > img {
+  height: 57px;
+  margin: 10px;
+}
+.template > span {
+  font-size: 35px;
+  color: #fff;
+  margin: 10px;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+.text span {
+  text-align: center;
+  font-family: FontL !important;
+  color: #fff;
+}
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: FontR;
+  font-size: 20px;
+}
+.bttn {
+  margin: 10px;
+}
+.bttn a {
+  color: #fff !important;
+}
+.data {
+  margin: 3px 0 18px;
+}
+.setting input,
+.data input {
+  color: #fff;
+}
+.add-button a button:hover {
+  transform: scale(1.03);
+  transition: all 0.15s linear;
+}
+.add-button button {
+  transition: all 0.1s linear;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  background: #9d05f8;
+  color: #fff;
+  padding: 5px;
+  margin-top: 10px;
+}
+.no-data {
+  height: 85vh;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+.no-data::after {
+  content: "";
+  position: absolute;
+  background: radial-gradient(
+    ellipse 23% 8% at 50% 67%,
+    white -384px,
+    transparent 165px
+  );
+  height: 320px;
+  width: 320px;
+  z-index: -1;
+}
+.no-data-text {
+  font-size: 25px;
+}
+
+.tabel {
+  margin: 10px;
+  max-height: 86vh;
+  overflow: auto;
+}
+/* .tabel table {
+  width: calc(20rem + 40vw);
+} */
+.tabel table {
+  min-width: 800px;
+}
+.tabel input {
+  color: #fff;
+  text-align: center;
+}
+.tabel th,
+.tabel tr,
+.tabel td {
+  padding: 10px;
+  text-align: center;
+}
+
+.hover li {
+  opacity: 0;
+  transition: 0.2s all linear;
+}
+.hover:hover {
+  background: #440f77;
+  transition: 0.2s all linear;
+}
+.hover:hover li {
+  opacity: 1;
+  transition: 0.2s all linear;
+}
+.th-container {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+.tabel th:nth-child(1) {
+  width: 70px;
+}
+.tabel th:nth-child(2) {
+  width: 130px;
+}
+.tabel th:nth-child(3) {
+  width: 150px;
+}
+.tabel th:nth-child(4) {
+  width: 250px;
+}
+.tabel th:nth-child(5) {
+  width: 100px;
+}
+
+.remove-tr {
+  transition: 1s opacity, 1s transform;
+  transform: scale(0.3);
+  opacity: 0.2;
+}
+.remove-tr ~ tr {
+  transition: 01s all linear;
+  transform: translate(0, -100%);
+}
+
+.date-time > div {
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  padding: 0;
+  -webkit-box-orient: vertical; */
+  white-space: nowrap;
+}
+.tabel tbody label,
+.tabel tbody li {
+  padding: 0;
+  cursor: pointer;
+}
+input[type="radio"] {
+  display: none;
+}
+
+.tabel thead {
+  background-color: blueviolet;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+}
+.functions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+}
+.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.tabel tr:nth-child(2n) {
+  /*for even, ...(2n - 1) for even */
+  background: #0b0b0b26;
+}
+.tabel tr:nth-child(2n-1) {
+  background: #29184182;
+}
+
+.tabel tr:not(:last-child) {
+  border-bottom: 1px solid #39393966;
+}
+.tabel:hover::-webkit-scrollbar-thumb {
+  background: #c041e652;
+}
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+@media (max-width: 700px) {
+  .flex-row {
+    flex-direction: column !important;
+  }
+}

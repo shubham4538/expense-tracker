@@ -1,0 +1,49 @@
+.calender-container {
+  margin: 10px;
+  padding: 20px;
+  min-width: 800px;
+  max-width: 800px;
+}
+.fc-direction-ltr .fc-daygrid-event.fc-event-end,
+.fc-direction-rtl .fc-daygrid-event.fc-event-start,
+.fc-direction-ltr .fc-daygrid-event.fc-event-start,
+.fc-direction-rtl .fc-daygrid-event.fc-event-end {
+  margin: 2px 5px !important;
+  overflow: hidden;
+  padding: 0 5px;
+  text-overflow: ellipsis;
+}
+.fc-theme-standard .fc-popover {
+  border-radius: 7px;
+  background: #27293d;
+  border: none;
+}
+.fc-theme-standard .fc-popover > div {
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
+}
+.fc-daygrid-event {
+  border-radius: 7px;
+}
+.fc-h-event .fc-event-main {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.fc .fc-scrollgrid-section-header.fc-scrollgrid-section-sticky > * {
+  top: auto;
+  background: none;
+}
+.fc .fc-list-sticky .fc-list-day > * {
+  /* .fc .fc-list-sticky .fc-list-day * { */
+  background: transparent;
+}
+.fc-event:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 800px) {
+  .change {
+    display: flex;
+    justify-content: center;
+  }
+}

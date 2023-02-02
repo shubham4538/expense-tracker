@@ -1,0 +1,169 @@
+@font-face {
+  font-family: FontL;
+  src: url("./Fonts/Nexa\ Light.otf");
+}
+
+.setting-container {
+  display: flex;
+  height: 100%;
+}
+.setting-sidebar {
+  height: 100%;
+  width: 210px;
+  border-right: 1px solid #323244;
+  background: #262736;
+}
+.setting-side {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-bottom: 1px solid #323244;
+}
+.active-side {
+  color: #8f5bec;
+  border-right: 3px solid #5f23ca;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  flex: 1;
+}
+.setting {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.img-block {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.change-img {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.image-drop-down {
+  background: #34364b;
+  /* position: absolute; */
+  /* width: 97.5%; */
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  top: 100%;
+  padding: 0;
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  transition: all 0.2s ease-in;
+  box-shadow: inset 0px 6px 10px -9px #000, 0px 5px 6px -4px #000;
+}
+.show-image {
+  padding: 5px;
+  max-height: 300px;
+  transition: all 0.2s ease-in;
+}
+.show-image > * {
+  padding: 5px;
+}
+.option-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+/* .option-images > div {
+   flex: 1; 
+} */
+.file-box {
+  display: flex;
+}
+.file-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+#file {
+  display: none;
+  width: 50%;
+  cursor: pointer;
+  color: transparent;
+  border: none;
+}
+.preview-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 5px;
+  padding: 5px;
+  font-size: 18px;
+  justify-content: center;
+  border: none;
+  border-radius: 10px;
+  background: #9d05f8;
+  color: #fff;
+  transition: all 0.2s linear;
+}
+.pointer {
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
+.cursor {
+  cursor: wait !important;
+}
+.update-loader {
+  position: absolute;
+  width: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #ffa516 94%, #0000) top/8px 8px
+      no-repeat,
+    conic-gradient(#0000 30%, #ffa516);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 7px), #000 0);
+  animation: s3 1s infinite linear;
+}
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.ok-cancel-butt {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+}
+.ok-cancel-butt .buttons {
+  padding: 7px 10px;
+}
+.ok-cancel-butt .buttons:active {
+  scale: 0.92;
+  transition: all 0.3s linear;
+}
+.hidden {
+  display: none;
+}
+.error {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* Personal */
+.personal input {
+  font-family: FontL;
+}
+/* Password */

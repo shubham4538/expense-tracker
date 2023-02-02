@@ -1,0 +1,110 @@
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import Axios from "axios";
+import icon from "../../Resources/Image/IconShadow.png";
+
+function Login() {
+  const navigate = useNavigate();
+
+  const schema = yup.object().shape({
+    Username: yup.string().required(),
+    Password: yup.string().required(),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = (data) => {
+    Axios.post("http://localhost:3001/login", data).then((res) => {
+      if (res.data.notExists) {
+        console.log(res.data.notExists);
+        alert(res.data.notExists);
+      } else if (res.data.notPassword) {
+        alert(res.data.notPassword);
+      } else {
+        console.log("ok");
+        alert("Login Successfull :)");
+        localStorage.setItem("expensesAccDetails", data.Username);
+        navigate("/Home");
+      }
+    });
+  };
+
+  return (
+    <div className="form-block">
+      <div className="form-left">
+        <div className="glass">
+          <div className="top">
+            <div className="mb-2">
+              <img src={icon} style={{ height: "50px" }} />
+            </div>
+            <div className="paragraph">
+              Welcome Back to
+              <Link to="/">
+                <span className="bold"> EXPENSSO</span>
+              </Link>
+              . Just enter your
+              <b> Login </b>
+              details and continue tracking your expenses and incomes.
+            </div>
+          </div>
+          <div className="bottom">
+            <span>Don't have an Account ?</span>
+            <Link to="/SignUp">
+              <span className="bold">SigUp</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className="form-right">
+        <h2
+          className="bold mt-3 mb-4"
+          style={{ fontSize: "25px", color: "#000" }}
+        >
+          Login
+        </h2>
+        <div className="input-container">
+          <div className="inputs">
+            <div className="box">
+              <span>Username</span>
+              <input
+                type="text"
+                name="Username"
+                {...register("Username")}
+                autoComplete="off"
+              />
+              <span style={{ fontSize: "13px", color: "red" }}>
+                {errors["Username"]?.message}
+              </span>
+            </div>
+            <div className="box">
+              <span>Password</span>
+              <input
+                type="password"
+                name="Password"
+                {...register("Password")}
+                autoComplete="off"
+              />
+              <span style={{ fontSize: "13px", color: "red" }}>
+                {errors["Password"]?.message}
+              </span>
+            </div>
+            <div className="box">
+              <button onClick={handleSubmit(onSubmit)}>Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Login;

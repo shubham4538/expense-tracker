@@ -1,0 +1,102 @@
+/* .boxer{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 100%;
+} */
+.nav-bar {
+  width: inherit;
+  background: #400075;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  color: #fff;
+}
+.side-bar {
+  color: #fff;
+  height: inherit;
+  position: fixed;
+  background: linear-gradient(0deg, #030216, #420667);
+  width: 180px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  transform: translate(-100%);
+  transition: all 0.3s ease-in;
+  box-shadow: 0 0 0 1000px transparent;
+}
+.show {
+  transition: all 0.3s ease-out;
+  box-shadow: 0 0 0 1000vw #00000085;
+  transform: translate(0);
+}
+.burger {
+  cursor: pointer;
+  line-height: 1;
+}
+.user {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px;
+}
+.user a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: 15px 0;
+}
+.user button {
+  width: inherit;
+  background: #9d05f8;
+  border-radius: 8px;
+  padding: 8px;
+  border: none;
+}
+.user-dp {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.usernames {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.username {
+  font-size: 13px;
+  color: grey;
+  line-height: 1;
+}
+.active {
+  color: aqua !important;
+  pointer-events: none;
+}
+.links a,
+.links > div {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  transition: transform 0.2s linear;
+}
+.links a:hover,
+.links > div:hover {
+  color: aquamarine !important;
+  transform: scale(1.05);
+  transition: transform 0.2s linear;
+  cursor: pointer;
+}
+.links > .log:hover {
+  color: #ff3838 !important;
+}
+.links a > i,
+.links > div > i {
+  line-height: 1;
+  margin-right: 10px;
+}

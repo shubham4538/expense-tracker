@@ -59,9 +59,12 @@ function AllExpense() {
     try {
       const data = localStorage.getItem("expensesAccDetails");
       if (data) {
-        Axios.post("http://localhost:3001/eachCollectionData", {
-          collection: data,
-        }).then((res) => {
+        Axios.post(
+          "https://expense-tracker-one-indol.vercel.app/eachCollectionData",
+          {
+            collection: data,
+          }
+        ).then((res) => {
           if (res.data.err) {
             console.log("Error");
           } else {

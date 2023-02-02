@@ -42,7 +42,10 @@ function Password() {
 
   const onSubmit = (data) => {
     data = { ...data, FullName: details.FullName, Username: username };
-    Axios.post("http://localhost:3001/password", data).then((res) => {
+    Axios.post(
+      "https://expense-tracker-one-indol.vercel.app/password",
+      data
+    ).then((res) => {
       if (res.data.err) {
         alert("Something went wrong :(");
       } else {

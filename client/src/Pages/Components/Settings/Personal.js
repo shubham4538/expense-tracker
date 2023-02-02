@@ -47,11 +47,13 @@ function Personal() {
   });
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/imageFiles").then((res) => {
-      setImages(res.data.resources);
-      // For folder images
-      // setImages(res.data);
-    });
+    Axios.get("https://expense-tracker-one-indol.vercel.app/imageFiles").then(
+      (res) => {
+        setImages(res.data.resources);
+        // For folder images
+        // setImages(res.data);
+      }
+    );
   }, []);
 
   const changeHandler = (event) => {
@@ -80,11 +82,15 @@ function Personal() {
           change: "image",
           base: result,
         };
-        Axios.post("http://localhost:3001/imageUpdate", JSON.stringify(data), {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }).then((res) => {
+        Axios.post(
+          "https://expense-tracker-one-indol.vercel.app/imageUpdate",
+          JSON.stringify(data),
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        ).then((res) => {
           console.log(res.data);
           if (res.data.success) {
             alert(res.data.success);
@@ -109,7 +115,10 @@ function Personal() {
       change: "image",
       value: imageName,
     };
-    Axios.post("http://localhost:3001/setting", data).then(() => {
+    Axios.post(
+      "https://expense-tracker-one-indol.vercel.app/setting",
+      data
+    ).then(() => {
       window.location.reload();
     });
   };
@@ -118,7 +127,10 @@ function Personal() {
     console.log(data);
     data = { ...data, OldUser: username, OldName: details.FullName };
     console.log(data);
-    Axios.post("http://localhost:3001/changePersonal", data).then((res) => {
+    Axios.post(
+      "https://expense-tracker-one-indol.vercel.app/changePersonal",
+      data
+    ).then((res) => {
       if (res.data.result) {
         localStorage.setItem("expensesAccDetails", data.Username);
         window.location.reload();

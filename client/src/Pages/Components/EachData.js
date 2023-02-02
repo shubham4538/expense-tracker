@@ -35,9 +35,12 @@ function EachData({
   useEffect(() => {
     try {
       if (username) {
-        Axios.post("http://localhost:3001/eachCollectionData", {
-          collection: username,
-        }).then((res) => {
+        Axios.post(
+          "https://expense-tracker-one-indol.vercel.app/eachCollectionData",
+          {
+            collection: username,
+          }
+        ).then((res) => {
           if (res.data.err) {
             console.log("Error");
           } else {
@@ -73,7 +76,10 @@ function EachData({
         type: type,
         username: username,
       };
-      Axios.post("http://localhost:3001/update", newData).then((res) => {
+      Axios.post(
+        "https://expense-tracker-one-indol.vercel.app/update",
+        newData
+      ).then((res) => {
         console.log(res);
         if (res.data.success) {
           if (res.data.success.modifiedCount > 0) {
@@ -93,14 +99,17 @@ function EachData({
 
   const deleteData = (e) => {
     if (window.confirm("Are you sure ?")) {
-      Axios.delete(`http://localhost:3001/delete${data._id}`, {
-        data: {
-          username: username,
-          year: new Date(time).getFullYear().toString(),
-          type: type,
-          userId: details._id,
-        },
-      }).then((res) => {
+      Axios.delete(
+        `https://expense-tracker-one-indol.vercel.app/delete${data._id}`,
+        {
+          data: {
+            username: username,
+            year: new Date(time).getFullYear().toString(),
+            type: type,
+            userId: details._id,
+          },
+        }
+      ).then((res) => {
         console.log(res);
         if (res.data.success) {
           alert(res.data.success);

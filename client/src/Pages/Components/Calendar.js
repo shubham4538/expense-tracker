@@ -41,7 +41,10 @@ function Calendar() {
               username: username,
               fullname: details.FullName,
             };
-            Axios.post("http://localhost:3001/addEvent", data).then((res) => {
+            Axios.post(
+              "https://expense-tracker-one-indol.vercel.app/addEvent",
+              data
+            ).then((res) => {
               if (res.data.result) {
                 return true;
               } else {
@@ -96,9 +99,12 @@ function Calendar() {
             username: username,
             fullname: details.FullName,
           };
-          Axios.delete(`http://localhost:3001/deleteEvent${id}`, {
-            data: data,
-          }).then((res) => {
+          Axios.delete(
+            `https://expense-tracker-one-indol.vercel.app/deleteEvent${id}`,
+            {
+              data: data,
+            }
+          ).then((res) => {
             if (res.data.err) {
               throw new Error("Somthing went wrong !");
             } else {

@@ -60,11 +60,13 @@ function SignUp() {
 
   useEffect(() => {
     //Getting data for non-reusable purpose
-    Axios.get("http://localhost:3001/collections").then((res) => {
-      const objectArr = res.data;
-      const arrName = objectArr.map((names) => names.name);
-      setUser(arrName);
-    });
+    Axios.get("https://expense-tracker-one-indol.vercel.app/collections").then(
+      (res) => {
+        const objectArr = res.data;
+        const arrName = objectArr.map((names) => names.name);
+        setUser(arrName);
+      }
+    );
 
     //Username space disallow
     const userName = document.getElementById("Username");
@@ -80,9 +82,12 @@ function SignUp() {
     //Getting Email and phone number for non-reuse
     //New useEffect sideeffect as user as it changes
     user.forEach((name) => {
-      Axios.post("http://localhost:3001/eachCollectionData", {
-        collection: name,
-      }).then((res) => {
+      Axios.post(
+        "https://expense-tracker-one-indol.vercel.app/eachCollectionData",
+        {
+          collection: name,
+        }
+      ).then((res) => {
         setMail((old) => [...old, res.data[0].Email]);
         setPhone((old) => [...old, res.data[0].Phone]);
       });
@@ -90,7 +95,10 @@ function SignUp() {
   }, [user]);
 
   const onSubmit = (details) => {
-    Axios.post("http://localhost:3001/create", details).then((res) => {
+    Axios.post(
+      "https://expense-tracker-one-indol.vercel.app/create",
+      details
+    ).then((res) => {
       if (res.data.err) {
         console.log("Error");
         alert("Something went wrong :(");

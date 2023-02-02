@@ -23,19 +23,21 @@ function Login() {
   });
 
   const onSubmit = (data) => {
-    Axios.post("http://localhost:3001/login", data).then((res) => {
-      if (res.data.notExists) {
-        console.log(res.data.notExists);
-        alert(res.data.notExists);
-      } else if (res.data.notPassword) {
-        alert(res.data.notPassword);
-      } else {
-        console.log("ok");
-        alert("Login Successfull :)");
-        localStorage.setItem("expensesAccDetails", data.Username);
-        navigate("/Home");
+    Axios.post("https://expense-tracker-one-indol.vercel.app/login", data).then(
+      (res) => {
+        if (res.data.notExists) {
+          console.log(res.data.notExists);
+          alert(res.data.notExists);
+        } else if (res.data.notPassword) {
+          alert(res.data.notPassword);
+        } else {
+          console.log("ok");
+          alert("Login Successfull :)");
+          localStorage.setItem("expensesAccDetails", data.Username);
+          navigate("/Home");
+        }
       }
-    });
+    );
   };
 
   return (

@@ -17,7 +17,9 @@ function Settings() {
 
   useEffect(() => {
     try {
-      Axios.get("http://localhost:3001/collections").then((res) => {
+      Axios.get(
+        "https://expense-tracker-one-indol.vercel.app/collections"
+      ).then((res) => {
         const alldetails = res.data;
         const arrName = alldetails.map((names) => names.name);
         setAllData(arrName);
@@ -29,9 +31,12 @@ function Settings() {
     try {
       const data = localStorage.getItem("expensesAccDetails");
       if (data) {
-        Axios.post("http://localhost:3001/eachCollectionData", {
-          collection: data,
-        }).then((res) => {
+        Axios.post(
+          "https://expense-tracker-one-indol.vercel.app/eachCollectionData",
+          {
+            collection: data,
+          }
+        ).then((res) => {
           if (res.data.err) {
             console.log("Error");
           } else {

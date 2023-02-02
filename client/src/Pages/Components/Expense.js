@@ -52,7 +52,10 @@ function Expense() {
       Username: localStorage.getItem("expensesAccDetails"),
     };
 
-    Axios.post("http://localhost:3001/addData", newData).then((res) => {
+    Axios.post(
+      "https://expense-tracker-one-indol.vercel.app/addData",
+      newData
+    ).then((res) => {
       if (res.data.err) {
         console.log("Error");
       } else {
@@ -132,7 +135,10 @@ function Expense() {
               Username: localStorage.getItem("expensesAccDetails"),
             };
             console.log(newData);
-            Axios.post("http://localhost:3001/addData", newData).then((res) => {
+            Axios.post(
+              "https://expense-tracker-one-indol.vercel.app/addData",
+              newData
+            ).then((res) => {
               if (res.data.result) {
                 return true;
               } else {
@@ -161,9 +167,12 @@ function Expense() {
     try {
       const data = localStorage.getItem("expensesAccDetails");
       if (data) {
-        Axios.post("http://localhost:3001/eachCollectionData", {
-          collection: data,
-        }).then((res) => {
+        Axios.post(
+          "https://expense-tracker-one-indol.vercel.app/eachCollectionData",
+          {
+            collection: data,
+          }
+        ).then((res) => {
           if (res.data.err) {
             console.log("Error");
           } else {

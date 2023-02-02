@@ -12,8 +12,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 // MongoDatabase connection
-const url =
-  "mongodb+srv://Shubham4538:4538@cluster0.4ltfv.mongodb.net/?retryWrites=true&w=majority";
+const url = process.env.URL;
 const connection = MongoClient.connect(url);
 const db = connection.then((data) => {
   return data.db("Expenses");
@@ -21,19 +20,15 @@ const db = connection.then((data) => {
 
 // Cloudinary connection
 cloudinary.config({
-  // cloud_name: process.env.CLOUD_NAME,
-  // api_key: process.env.CLOUD_KEY,
-  // api_secret: process.env.CLOUD_SECRET,
-  cloud_name: "shubham4538",
-  api_key: "874368739454781",
-  api_secret: "v_LPxCOeHV3cIPVHtdWoK5vEL1w",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET,
   secure: true,
 });
 const getFolder = cloudinary.api.resources({
   type: "upload",
   max_results: 20,
-  prefix: "React-bank",
-  prefix: process.env.PREFIX, //add your folder
+  prefix: process.env.PREFIX,
 });
 
 app.get("/collections", (req, res) => {

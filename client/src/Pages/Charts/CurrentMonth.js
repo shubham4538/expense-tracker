@@ -8,15 +8,20 @@ function LastMonth({ details, type }) {
   const [monthName, setMonthName] = useState(
     "No data inserted for Current Month"
   );
-  // const [montharray, setMontharray] = useState([]);
 
   useEffect(() => {
     const currentYear = new Date().getFullYear();
     const monthArray = (num) => {
-      if (num === 1) {
+      if (num == 1) {
         if (new Date().getMonth() === 0) {
           return details.Details[type][currentYear - 1].filter((month) => {
             return new Date(month.time).getMonth() === 11;
+          });
+        } else {
+          return details.Details[type][currentYear].filter((month) => {
+            return (
+              new Date(month.time).getMonth() === new Date().getMonth() - num
+            );
           });
         }
       } else {
@@ -35,8 +40,8 @@ function LastMonth({ details, type }) {
         if (details.Details[type][currentYear] !== undefined) {
           const prevmontharray = monthArray(1);
           const montharray = monthArray(0);
-          if (prevmontharray.length > 0) {
-            // setMontharray(prevmontharray);
+
+          if (prevmontharray.length > 0 && montharray.length > 0) {
             const lastmonthtotal = monthTotal(prevmontharray);
             const monthtotal = monthTotal(montharray);
             setMonthTotal(monthtotal);

@@ -134,7 +134,6 @@ function Expense() {
               Fullname: details.FullName,
               Username: localStorage.getItem("expensesAccDetails"),
             };
-            console.log(newData);
             Axios.post(
               "https://expense-tracker-one-indol.vercel.app/addData",
               newData

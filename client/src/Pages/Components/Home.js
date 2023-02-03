@@ -58,11 +58,14 @@ const Home = () => {
   const TotalAmount = (data, type) => {
     if (Object.keys(data.Details).length !== 0) {
       if (data.Details[type] !== undefined) {
-        return Object.keys(data?.Details[type])?.map((year) => {
+        const nums = Object.keys(data?.Details[type])?.map((year) => {
           return data?.Details[type][year]?.reduce((total, each2) => {
             return total + each2.amount;
           }, 0);
         });
+        return nums.reduce((total, amt) => {
+          return total + amt;
+        }, 0);
       } else return "No Data";
     } else return "No Data";
   };
@@ -79,13 +82,6 @@ const Home = () => {
       }
     } else return "";
   };
-
-  // const expense = (yearE, monthE, dateE) => {
-  //   const desired = details.Details.Expense.filter((each) => each[yearE]);
-  //   const monthee = desired[0][yearE].filter((each) => each[monthE]);
-  //   return monthee[0][monthE][dateE];
-  // };
-  // console.log(expense(2022, "April", 7));
 
   return login ? (
     <>
@@ -185,7 +181,7 @@ const Home = () => {
           <LastData details={details} type={"Expense"} iconC={"#ff6384"} />
           <div className="global-container block block-3">
             <span className="mb-1">
-              Total Income{" "}
+              Total Income
               <i className="fal fa-wallet" style={{ color: "#63faff" }}></i>
             </span>
             <hr />
@@ -196,7 +192,7 @@ const Home = () => {
           </div>
           <div className="global-container block block-4">
             <span className="mb-1">
-              Total Expense{" "}
+              Total Expense
               <i className="fal fa-wallet" style={{ color: "#FF6384" }}></i>
             </span>
             <hr />

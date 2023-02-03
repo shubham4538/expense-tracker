@@ -89,7 +89,7 @@ const Home = () => {
       <div className="authenticason">
         <div style={{ margin: " 10px" }}>
           <h3 style={{ margin: 0 }}>
-            <b>Account Overview</b>
+            <b>Account Overview {window.screen.width}</b>
           </h3>
           <span className="name-span">{details.FullName}</span>
         </div>

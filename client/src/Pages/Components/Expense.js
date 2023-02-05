@@ -52,17 +52,21 @@ function Expense() {
       Username: localStorage.getItem("expensesAccDetails"),
     };
 
-    Axios.post(
-      "https://expense-tracker-one-indol.vercel.app/addData",
-      newData
-    ).then((res) => {
-      if (res.data.err) {
-        console.log("Error");
-      } else {
-        console.log(res.data.success);
-        window.location.reload();
-      }
-    });
+    if (window.confirm(date.toString())) {
+      Axios.post(
+        "https://expense-tracker-one-indol.vercel.app/addData",
+        newData
+      ).then((res) => {
+        if (res.data.err) {
+          console.log("Error");
+        } else {
+          console.log(res.data.success);
+          window.location.reload();
+        }
+      });
+    } else {
+      alert("Invalid Date");
+    }
   };
 
   const setValue = (e) => {

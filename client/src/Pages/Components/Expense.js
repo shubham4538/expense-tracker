@@ -65,7 +65,7 @@ function Expense() {
         }
       });
     } else {
-      alert("Invalid Date");
+      alert(date, "|", date.toString());
     }
   };
 

@@ -52,7 +52,7 @@ function Income() {
       Username: localStorage.getItem("expensesAccDetails"),
     };
 
-    if (confirm(date.toString()) == true) {
+    if (window.confirm(date.toString())) {
       Axios.post(
         "https://expense-tracker-one-indol.vercel.app/addData",
         newData

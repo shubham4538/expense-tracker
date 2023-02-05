@@ -36,6 +36,7 @@ function Expense() {
   });
 
   const onSubmit = (data) => {
+    const alerting = data.Date;
     const yr = parseInt(data.Date.substr(0, 4));
     const mn = parseInt(data.Date.substr(5, 2));
     const dy = parseInt(data.Date.substr(8, 2));
@@ -52,7 +53,7 @@ function Expense() {
       Username: localStorage.getItem("expensesAccDetails"),
     };
 
-    if (window.confirm(data.Date)) {
+    if (window.confirm(":", alerting)) {
       Axios.post(
         "https://expense-tracker-one-indol.vercel.app/addData",
         newData

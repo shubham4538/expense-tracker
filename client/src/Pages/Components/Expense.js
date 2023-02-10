@@ -64,7 +64,7 @@ function Expense() {
         }
       });
     } else {
-      alert(date, "|", date.toString());
+      alert("Data Not Added");
     }
   };
 

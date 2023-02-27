@@ -111,7 +111,7 @@ function SignUp() {
     });
   };
 
-  return (
+  return !window.navigator.userAgent.match(/Android/i) ? (
     <div className="form-block">
       <div className="form-left">
         <div className="glass">
@@ -164,6 +164,55 @@ function SignUp() {
             <div className="box">
               <button onClick={handleSubmit(onSubmit)}>Submit</button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="form-block mobile-auth">
+      <div className="form-left">
+        <div className="glass">
+          <div className="top">
+            <div className="mb-2">
+              <img src={icon} style={{ height: "50px" }} />
+            </div>
+            <div className="paragraph">
+              <b>SignUp </b>
+              to
+              <Link to="/">
+                <span className="bold"> EXPENSSO </span>
+              </Link>
+              and start tracking your expenses and incomes.
+            </div>
+          </div>
+          <div className="input-container">
+            <div className="inputs">
+              {Tags.inputs.map((input) => {
+                return (
+                  <div key={input.name} className="box">
+                    <span>{input.label}</span>
+                    <input
+                      type={input.type}
+                      name={input.name}
+                      id={input.name}
+                      {...register(input.name)}
+                    />
+                    <span style={{ fontSize: "13px", color: "red" }}>
+                      {errors[input.name]?.message}
+                    </span>
+                  </div>
+                );
+              })}
+              <div className="box">
+                <button onClick={handleSubmit(onSubmit)}>Submit</button>
+              </div>
+            </div>
+          </div>
+          <div className="bottom">
+            <span>Already have an Account ?</span>
+            <Link to="/Login">
+              <span className="bold">Login</span>
+            </Link>
           </div>
         </div>
       </div>

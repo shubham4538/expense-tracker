@@ -40,7 +40,65 @@ function Login() {
     );
   };
 
-  return (
+  return window.navigator.userAgent.match(/Android/i) ? (
+    <div className="form-block mobile-auth">
+      <div className="form-left">
+        <div className="glass">
+          <div className="top">
+            <div className="mb-2">
+              <img src={icon} style={{ height: "50px" }} />
+            </div>
+            <div className="paragraph">
+              Welcome Back to
+              <Link to="/">
+                <span className="bold"> EXPENSSO</span>
+              </Link>
+              . Just enter your
+              <b> Login </b>
+              details and continue tracking your expenses and incomes.
+            </div>
+          </div>
+          <div className="input-container">
+            <div className="inputs">
+              <div className="box">
+                <span>Username</span>
+                <input
+                  type="text"
+                  name="Username"
+                  {...register("Username")}
+                  autoComplete="off"
+                />
+                <span style={{ fontSize: "13px", color: "red" }}>
+                  {errors["Username"]?.message}
+                </span>
+              </div>
+              <div className="box">
+                <span>Password</span>
+                <input
+                  type="password"
+                  name="Password"
+                  {...register("Password")}
+                  autoComplete="off"
+                />
+                <span style={{ fontSize: "13px", color: "red" }}>
+                  {errors["Password"]?.message}
+                </span>
+              </div>
+              <div className="box">
+                <button onClick={handleSubmit(onSubmit)}>Submit</button>
+              </div>
+            </div>
+          </div>
+          <div className="bottom">
+            <span>Don't have an Account ?</span>
+            <Link to="/SignUp">
+              <span className="bold">SigUp</span>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
     <div className="form-block">
       <div className="form-left">
         <div className="glass">

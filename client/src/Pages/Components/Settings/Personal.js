@@ -246,7 +246,7 @@ function Personal() {
             setFormChange(true);
           }}
         >
-          <h5 style={{ margin: "0" }}>Change Image</h5>
+          <h5 style={{ margin: "0" }}>Change Details</h5>
           <div className="text-field">
             <div className="error">
               <span>Change Full Name</span>

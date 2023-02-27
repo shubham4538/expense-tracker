@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Oval } from "react-loader-spinner";
 import Bars from "../Static/Bars";
 import Axios from "axios";
 import EachData from "./EachData";
@@ -9,6 +10,7 @@ function AllIncome() {
   const [open, setOpen] = useState("");
   const [dataArray, setDataArray] = useState();
   const [order, setOrder] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const sorting = (col) => {
     const sorter = document.querySelectorAll(".sorter");
@@ -75,12 +77,47 @@ function AllIncome() {
           }
         });
       }
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   }, []);
 
-  return dataArray && dataArray.length !== 0 ? (
+  return loading ? (
+    <>
+      <Bars login={login} details={details} />
+      <div className="authenticason">
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Oval
+            height={60}
+            width={60}
+            color="#a63bff"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="#373753"
+            strokeWidth={3}
+            strokeWidthSecondary={3}
+          />
+        </div>
+      </div>
+    </>
+  ) : loading ? (
+    <>
+      <Bars login={login} details={details} />
+      <div className="authenticason">
+        <div>You need to login first</div>
+      </div>
+    </>
+  ) : dataArray && dataArray.length !== 0 ? (
     <>
       <Bars login={login} details={details} />
       <div className="authenticason">

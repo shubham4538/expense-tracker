@@ -134,7 +134,13 @@ function Calendar() {
       <Bars details={details} login={login} />
       <div className="authenticason">
         <div className="change">
-          <div className="global-container calender-container">
+          <div
+            className={
+              window.navigator.userAgent.match(/Android/i)
+                ? "global-container calender-container mobile"
+                : "global-container calender-container"
+            }
+          >
             <FullCalender
               plugins={[
                 dayGridPlugin,

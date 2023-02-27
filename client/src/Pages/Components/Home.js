@@ -1,17 +1,10 @@
 import Axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Oval } from "react-loader-spinner";
 import BarChart from "../Charts/BarChart";
 import LineChart from "../Charts/LineChart";
 import LastData from "../Charts/LastData";
 import Bars from "../Static/Bars";
-
-// const SpeechRecognition =
-//   window.SpeechRecognition || window.webkitSpeechRecognition;
-// const mic = new SpeechRecognition();
-// mic.continuous = true;
-// mic.interimResults = true;
-// mic.lang = "en-US";
-// console.log(mic);
 
 const Home = () => {
   const [details, setDetails] = useState({});
@@ -20,6 +13,7 @@ const Home = () => {
   const [incyear, setIncyear] = useState();
   const [isExp, setIsExp] = useState(false);
   const [isInc, setIsInc] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     try {
@@ -31,7 +25,6 @@ const Home = () => {
             collection: data,
           }
         ).then((res) => {
-          // console.log(res);
           if (res.data.err) {
             // console.log("Error");
           } else {
@@ -49,6 +42,7 @@ const Home = () => {
           }
         });
       }
+      setLoading(false);
     } catch (err) {
       console.log(err);
       console.log("Login");
@@ -83,7 +77,34 @@ const Home = () => {
     } else return "";
   };
 
-  return login ? (
+  return loading ? (
+    <>
+      <Bars login={login} details={details} />
+      <div className="authenticason">
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Oval
+            height={60}
+            width={60}
+            color="#a63bff"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="#373753"
+            strokeWidth={3}
+            strokeWidthSecondary={3}
+          />
+        </div>
+      </div>
+    </>
+  ) : login ? (
     <>
       <Bars login={login} details={details} />
       <div className="authenticason">

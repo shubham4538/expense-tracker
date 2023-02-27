@@ -20,8 +20,10 @@
   border-bottom: 1px solid #323244;
 }
 .active-side {
-  color: #8f5bec;
   border-right: 3px solid #5f23ca;
+}
+.active-side * {
+  color: #8f5bec;
 }
 
 .settings {
@@ -167,3 +169,11 @@
   font-family: FontL;
 }
 /* Password */
+
+/* Mobile Setting */
+.mobile-setting .setting-sidebar {
+  width: 50px;
+}
+.mobile-setting span {
+  overflow-x: hidden;
+}

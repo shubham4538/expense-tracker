@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import Axios from "axios";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { Oval } from "react-loader-spinner";
 import Bars from "../Static/Bars";
 import LineChart from "../Charts/LineChart";
 import LastData from "../Charts/LastData";
 import LastMonth from "../Charts/CurrentMonth";
 import LastYear from "../Charts/LastYear";
 import AllData from "../Charts/AllData";
-import Axios from "axios";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 
 function Income() {
   const [details, setDetails] = useState({});
@@ -19,6 +20,7 @@ function Income() {
   const [isInc, setIsInc] = useState(false);
   const [incomeSnip, setIncomeSnip] = useState([]);
   const MySwal = withReactContent(Swal);
+  const [loading, setLoading] = useState(true);
 
   const schema = yup.object().shape({
     Description: yup.string().required(),
@@ -194,12 +196,40 @@ function Income() {
           }
         });
       }
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   }, []);
 
-  return login ? (
+  return loading ? (
+    <>
+      <Bars login={login} details={details} />
+      <div className="authenticason">
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Oval
+            height={60}
+            width={60}
+            color="#a63bff"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="#373753"
+            strokeWidth={3}
+            strokeWidthSecondary={3}
+          />
+        </div>
+      </div>
+    </>
+  ) : login ? (
     <>
       <Bars login={login} details={details} />
       <div className="authenticason">

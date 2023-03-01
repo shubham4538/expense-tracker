@@ -40,9 +40,11 @@ const Home = () => {
               setIsExp(true);
             }
           }
+          setLoading(false);
         });
+      } else {
+        setLoading(false);
       }
-      setLoading(false);
     } catch (err) {
       console.log(err);
       console.log("Login");

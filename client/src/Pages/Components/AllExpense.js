@@ -95,9 +95,11 @@ function AllExpense() {
             setDataArray(Object.values(res.data[0].Details.Expense).flat());
             setLogin(true);
           }
+          setLoading(false);
         });
+      } else {
+        setLoading(false);
       }
-      setLoading(false);
     } catch (err) {
       console.log(err);
     }

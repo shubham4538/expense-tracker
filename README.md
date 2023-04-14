@@ -1,2 +1,2 @@
 # expense-tracker
-Project Demo: https://github.com/shubham4538/expense-tracker
+Project Demo: https://expense-tracker-front-nu.vercel.app/

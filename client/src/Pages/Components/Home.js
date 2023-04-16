@@ -32,11 +32,19 @@ const Home = () => {
             setDetails(details);
             setLogin(true);
             if (details?.Details?.Income !== undefined) {
-              setIncyear(Object.keys(details.Details.Income)[0]);
+              setIncyear(
+                Object.keys(details.Details.Income)[
+                  Object.keys(details.Details.Income).length - 1
+                ]
+              );
               setIsInc(true);
             }
             if (details?.Details?.Expense !== undefined) {
-              setExpyear(Object.keys(details.Details.Expense)[0]);
+              setExpyear(
+                Object.keys(details.Details.Expense)[
+                  Object.keys(details.Details.Expense).length - 1
+                ]
+              );
               setIsExp(true);
             }
           }

@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Oval } from "react-loader-spinner";
 import Bars from "../Static/Bars";
+import CategoryChart from "../Charts/CategoryChart";
 import LineChart from "../Charts/LineChart";
 import LastData from "../Charts/LastData";
 import LastMonth from "../Charts/CurrentMonth";
@@ -17,6 +18,7 @@ function Income() {
   const [details, setDetails] = useState({});
   const [login, setLogin] = useState(false);
   const [incyear, setIncyear] = useState();
+  const [catyear, setCatyear] = useState();
   const [isInc, setIsInc] = useState(false);
   const [incomeSnip, setIncomeSnip] = useState([]);
   const MySwal = withReactContent(Swal);
@@ -139,7 +141,6 @@ function Income() {
               Fullname: details.FullName,
               Username: localStorage.getItem("expensesAccDetails"),
             };
-            console.log(newData);
             Axios.post(
               "https://expense-tracker-one-indol.vercel.app/addData",
               newData
@@ -186,18 +187,16 @@ function Income() {
             setIncomeSnip(snipDummy(details));
             setLogin(true);
             if (details.Details.Income) {
-              setIncyear(
-                Object.keys(details.Details.Income)[
-                  Object.keys(details.Details.Income).length - 1
-                ]
-              );
+              const currYear = Object.keys(details.Details.Income)[
+                Object.keys(details.Details.Income).length - 1
+              ];
+              setIncyear(currYear);
+              setCatyear(currYear);
               setIsInc(true);
             }
           }
           setLoading(false);
         });
-      } else {
-        setLoading(false);
       }
     } catch (err) {
       console.log(err);
@@ -284,7 +283,7 @@ function Income() {
             </div>
           </div>
           <div className="global-container charts chart-2 d-flex flex-column">
-            <div className="parent-snippet">
+            {/* <div className="parent-snippet">
               {incomeSnip.map((data) => {
                 const sendData = {
                   Description: data.desc,
@@ -302,7 +301,7 @@ function Income() {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
             <h5 className="chart-header">
               <li className="far fa-plus" style={{ color: "#63faff" }}></li>
               Add Income Data
@@ -373,6 +372,50 @@ function Income() {
               <div className="add-button">
                 <button onClick={handleSubmit(onSubmit)}>Submit</button>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="chart flex-row d-flex">
+          <div className="global-container chart-full chart-1">
+            <div className="chart-header">
+              <h5 style={{ marginBottom: 0 }}>
+                <li
+                  className="fal fa-table-cells-large"
+                  style={{ color: "#63faff" }}
+                ></li>
+                Incomes By Category
+              </h5>
+              {isInc ? (
+                <span className="subtitle">
+                  For year
+                  <div className="select-parent">
+                    {catyear}
+                    <select
+                      className="select-class"
+                      onChange={(e) => setCatyear(e.target.value)}
+                      value={catyear}
+                    >
+                      {Object.keys(details.Details.Income).map((val) => {
+                        return (
+                          <option value={val} key={val}>
+                            {val}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <li className="far fa-exchange"></li>
+                  </div>
+                </span>
+              ) : (
+                <span>No Expense Data to show</span>
+              )}
+            </div>
+            <div className="main-chart">
+              <CategoryChart
+                yearData={isInc ? details.Details.Income[catyear] : {}}
+                type={"income"}
+                color={{ background: "#63faff3a", foreground: "#63faff" }}
+              />
             </div>
           </div>
         </div>

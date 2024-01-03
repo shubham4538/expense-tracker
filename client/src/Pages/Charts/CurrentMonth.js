@@ -32,20 +32,20 @@ function LastMonth({ details, type }) {
         });
       }
     };
+
     const monthTotal = (montharray) => {
       return montharray.map((date) => date.amount).reduce((a, b) => a + b);
     };
+
     if (Object.keys(details.Details).length !== 0) {
       if (details.Details[type] !== undefined) {
         if (details.Details[type][currentYear] !== undefined) {
           const prevmontharray = monthArray(1);
           const montharray = monthArray(0);
 
-          if (prevmontharray.length > 0 && montharray.length > 0) {
-            const lastmonthtotal = monthTotal(prevmontharray);
+          if (montharray.length > 0) {
             const monthtotal = monthTotal(montharray);
             setMonthTotal(monthtotal);
-            setLastMonthTotal(lastmonthtotal);
             setMonthName(
               `Total ${type} for Current Month (${new Date(
                 montharray[0]?.time
@@ -53,30 +53,29 @@ function LastMonth({ details, type }) {
                 month: "long",
               })})`
             );
-            if (monthtotal !== 0) {
-              // function relDiff(a, b) {
-              //   return  100 * Math.abs( ( a - b ) / ( (a+b)/2 ) );
-              //  }
-              //  // example
-              //  relDiff(2069, 2329);
-              const isWhatPercentOf = (prev, curr) => {
-                return Math.abs(Math.round(100 - (curr / prev) * 100));
-              };
-              if (lastmonthtotal > monthtotal) {
-                setProfit(true);
-                setLastMonthName(
-                  `${isWhatPercentOf(
-                    lastmonthtotal,
-                    monthtotal
-                  )}% lesser than Last Month (${lastMonthTotal})`
-                );
-              } else {
-                setLastMonthName(
-                  `${isWhatPercentOf(
-                    lastmonthtotal,
-                    monthtotal
-                  )}% greater than Last Month (${lastMonthTotal})`
-                );
+            if (prevmontharray.length > 0) {
+              const lastmonthtotal = monthTotal(prevmontharray);
+              setLastMonthTotal(lastmonthtotal);
+              if (monthtotal !== 0) {
+                const isWhatPercentOf = (prev, curr) => {
+                  return Math.abs(Math.round(100 - (curr / prev) * 100));
+                };
+                if (lastmonthtotal > monthtotal) {
+                  setProfit(true);
+                  setLastMonthName(
+                    `${isWhatPercentOf(
+                      lastmonthtotal,
+                      monthtotal
+                    )}% lesser than Last Month (${lastMonthTotal})`
+                  );
+                } else {
+                  setLastMonthName(
+                    `${isWhatPercentOf(
+                      lastmonthtotal,
+                      monthtotal
+                    )}% greater than Last Month (${lastMonthTotal})`
+                  );
+                }
               }
             }
           } else {

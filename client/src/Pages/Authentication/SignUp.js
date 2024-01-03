@@ -15,6 +15,7 @@ import Tags from "./Tags";
 
 function SignUp() {
   const navigate = useNavigate();
+  const [loading, isLoading] = useState(false);
   const [user, setUser] = useState([]);
   const [mail, setMail] = useState([]);
   const [phone, setPhone] = useState([]);
@@ -95,10 +96,12 @@ function SignUp() {
   }, [user]);
 
   const onSubmit = (details) => {
+    isLoading(true);
     Axios.post(
       "https://expense-tracker-one-indol.vercel.app/create",
       details
     ).then((res) => {
+      isLoading(false);
       if (res.data.err) {
         console.log("Error");
         alert("Something went wrong :(");
@@ -162,7 +165,11 @@ function SignUp() {
               );
             })}
             <div className="box">
-              <button onClick={handleSubmit(onSubmit)}>Submit</button>
+              {loading ? (
+                <button className="cursor-loading">...</button>
+              ) : (
+                <button onClick={handleSubmit(onSubmit)}>Submit</button>
+              )}
             </div>
           </div>
         </div>
@@ -204,7 +211,11 @@ function SignUp() {
                 );
               })}
               <div className="box">
-                <button onClick={handleSubmit(onSubmit)}>Submit</button>
+                {loading ? (
+                  <button className="cursor-loading">...</button>
+                ) : (
+                  <button onClick={handleSubmit(onSubmit)}>Submit</button>
+                )}
               </div>
             </div>
           </div>

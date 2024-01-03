@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Oval } from "react-loader-spinner";
 import Bars from "../Static/Bars";
+import CategoryChart from "../Charts/CategoryChart";
 import BarChart from "../Charts/BarChart";
 import LastData from "../Charts/LastData";
 import LastMonth from "../Charts/CurrentMonth";
@@ -17,6 +18,7 @@ function Expense() {
   const [details, setDetails] = useState({});
   const [login, setLogin] = useState(false);
   const [expyear, setExpyear] = useState();
+  const [catyear, setCatyear] = useState();
   const [isExp, setIsExp] = useState(false);
   const [expenseSnip, setExpenseSnip] = useState([]);
   const MySwal = withReactContent(Swal);
@@ -185,18 +187,16 @@ function Expense() {
             setExpenseSnip(snipDummy(details));
             setLogin(true);
             if (details.Details.Expense) {
-              setExpyear(
-                Object.keys(details.Details.Expense)[
-                  Object.keys(details.Details.Expense).length - 1
-                ]
-              );
+              const currYear = Object.keys(details.Details.Expense)[
+                Object.keys(details.Details.Expense).length - 1
+              ];
+              setExpyear(currYear);
+              setCatyear(currYear);
               setIsExp(true);
             }
           }
           setLoading(false);
         });
-      } else {
-        setLoading(false);
       }
     } catch (err) {
       console.log(err);
@@ -282,7 +282,7 @@ function Expense() {
             </div>
           </div>
           <div className="global-container charts chart-2 d-flex flex-column">
-            <div className="parent-snippet">
+            {/* <div className="parent-snippet">
               {expenseSnip.map((data) => {
                 const sendData = {
                   Description: data.desc,
@@ -300,7 +300,7 @@ function Expense() {
                   </div>
                 );
               })}
-            </div>
+            </div> */}
             <h5 className="chart-header">
               <li className="far fa-plus" style={{ color: "#FF6384" }}></li>
               Add Expense Data
@@ -375,6 +375,50 @@ function Expense() {
               <div className="add-button">
                 <button onClick={handleSubmit(onSubmit)}>Submit</button>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="chart flex-row d-flex">
+          <div className="global-container chart-full chart-1">
+            <div className="chart-header">
+              <h5 style={{ marginBottom: 0 }}>
+                <li
+                  className="fal fa-table-cells-large"
+                  style={{ color: "#FF6384" }}
+                ></li>
+                Expenses By Category
+              </h5>
+              {isExp ? (
+                <span className="subtitle">
+                  For year
+                  <div className="select-parent">
+                    {catyear}
+                    <select
+                      className="select-class"
+                      onChange={(e) => setCatyear(e.target.value)}
+                      value={catyear}
+                    >
+                      {Object.keys(details.Details.Expense).map((val) => {
+                        return (
+                          <option value={val} key={val}>
+                            {val}
+                          </option>
+                        );
+                      })}
+                    </select>
+                    <li className="far fa-exchange"></li>
+                  </div>
+                </span>
+              ) : (
+                <span>No Expense Data to show</span>
+              )}
+            </div>
+            <div className="main-chart">
+              <CategoryChart
+                yearData={isExp ? details.Details.Expense[catyear] : {}}
+                type={"expense"}
+                color={{ background: "#FF63843a", foreground: "#FF6384" }}
+              />
             </div>
           </div>
         </div>

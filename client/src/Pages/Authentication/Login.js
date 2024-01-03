@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,6 +8,7 @@ import icon from "../../Resources/Image/IconShadow.png";
 
 function Login() {
   const navigate = useNavigate();
+  const [loading, isLoading] = useState(false);
 
   const schema = yup.object().shape({
     Username: yup.string().required(),
@@ -23,8 +24,10 @@ function Login() {
   });
 
   const onSubmit = (data) => {
+    isLoading(true);
     Axios.post("https://expense-tracker-one-indol.vercel.app/login", data).then(
       (res) => {
+        isLoading(false);
         if (res.data.notExists) {
           console.log(res.data.notExists);
           alert(res.data.notExists);
@@ -85,7 +88,11 @@ function Login() {
                 </span>
               </div>
               <div className="box">
-                <button onClick={handleSubmit(onSubmit)}>Submit</button>
+                {loading ? (
+                  <button>...</button>
+                ) : (
+                  <button onClick={handleSubmit(onSubmit)}>Submit</button>
+                )}
               </div>
             </div>
           </div>
@@ -158,7 +165,11 @@ function Login() {
               </span>
             </div>
             <div className="box">
-              <button onClick={handleSubmit(onSubmit)}>Submit</button>
+              {loading ? (
+                <button className="cursor-loading">...</button>
+              ) : (
+                <button onClick={handleSubmit(onSubmit)}>Submit</button>
+              )}
             </div>
           </div>
         </div>

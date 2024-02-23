@@ -22,16 +22,6 @@ function AllExpense() {
     console.log("No data");
   }
 
-  // return loading ? (
-  //   <>Loading...</>
-  // ) : login ? (
-  //   <>login...</>
-  // ) : data ? (
-  //   <>data</>
-  // ) : (
-  //   <>No data</>
-  // )
-
   const sorting = (col) => {
     const sorter = document.querySelectorAll(".sorter");
     if (order) {
@@ -180,11 +170,11 @@ function AllExpense() {
                 {dataArray.map(
                   ({ amount, description, time, category, _id }, index) => {
                     const data = {
-                      amount: amount,
-                      description: description,
-                      time: time,
-                      category: category,
-                      _id: _id,
+                      amount,
+                      description,
+                      time,
+                      category,
+                      _id,
                     };
                     return (
                       <EachData

@@ -15,7 +15,7 @@ const options = {
       ticks: {
         display: true,
         autoSkip: true,
-        maxTicksLimit: 11,
+        maxTicksLimit: 12,
         minRotation: 45,
       },
     },
@@ -38,6 +38,7 @@ const expenseLabels = [
   "Investment",
   "Personal",
   "Entertainment",
+  "Turf",
   "Gift",
   "Miscellaneous",
 ];

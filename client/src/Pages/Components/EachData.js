@@ -25,8 +25,6 @@ function EachData({
   const [details, setDetails] = useState();
 
   const time = new Date(data.time);
-  // now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-  // const time = now.toISOString().slice(0, 19);
 
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(schema),
@@ -189,6 +187,7 @@ function EachData({
               <option value="Investment">Investment</option>
               <option value="Personal">Personal</option>
               <option value="Entertainment">Entertainment</option>
+              <option value="Turf">Turf</option>
               <option value="Gift">Gift</option>
               <option value="Miscellaneous">Miscellaneous</option>
             </select>

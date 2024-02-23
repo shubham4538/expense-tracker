@@ -338,6 +338,7 @@ function Expense() {
                   <option value="Investment">Investment</option>
                   <option value="Personal">Personal</option>
                   <option value="Entertainment">Entertainment</option>
+                  <option value="Turf">Turf</option>
                   <option value="Gift">Gift</option>
                   <option value="Miscellaneous">Miscellaneous</option>
                 </select>

@@ -55,6 +55,7 @@ const incomeLabels = [
 ];
 
 function CategoryChart({ yearData, type, color }) {
+  console.log(yearData);
   const categoryList = {};
 
   yearData.map((item) => {
